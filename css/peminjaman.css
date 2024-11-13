@@ -1,4 +1,4 @@
-
+/* Base Styling */
 body {
   font-family: "Poppins", sans-serif;
   margin: 0;
@@ -11,6 +11,7 @@ h1 {
   color: #3a577f;
 }
 
+/* Sidebar Styling */
 .sidebar {
   background-color: #4a648d;
   width: 300px;
@@ -19,15 +20,16 @@ h1 {
   flex-direction: column;
   align-items: center;
   color: #fff;
+  transition: width 0.3s;
 }
 
 .profile {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    align-items: center;
-    margin-bottom: 50px;
-  }
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 50px;
+}
 
 .profile .photo {
   width: 70px;
@@ -37,27 +39,31 @@ h1 {
   margin-bottom: 10px;
 }
 
-.name h1 {
-  font-size: 18px;
+.name h1,
+.name h3 {
   margin: 0;
   color: #fff;
+}
+
+.name h1 {
+  font-size: 18px;
 }
 
 .name h3 {
   font-size: 14px;
-  margin: 0;
-  color: #fff;
 }
 
+/* List Styling */
 .list {
   display: flex;
   align-items: center;
   width: 100%;
   padding: 25px 25px;
-  margin-left: 30px;
   cursor: pointer;
+  margin-left: 30px;
   color: #fff;
   text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
 .list a {
@@ -77,20 +83,21 @@ h1 {
   margin-right: 15px;
 }
 
-
+/* Main Content Styling */
 .main {
   flex: 1;
   padding: 20px;
   background-color: #f7f8fa;
 }
 
+/* Table Styling */
 .table-rekap {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
 }
-
 
 .table {
   width: 100%;
@@ -110,7 +117,7 @@ h1 {
   text-align: center;
 }
 
-
+/* Button Styling */
 button {
   padding: 5px 10px;
   border: none;
@@ -121,7 +128,7 @@ button {
 }
 
 .btn-edit {
-  background-color: #f9da7e;
+  background-color: #f7c83b;
   width: 57px;
   font-size: 13px;
   font-weight: 300;
@@ -136,7 +143,78 @@ button {
   height: 26px;
 }
 
-table#myTable th,
-table#myTable td {
-  text-align: left;
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: -100%; /* Hide sidebar */
+    transition: left 0.3s;
+    z-index: 999;
+  }
+
+  .sidebar.active {
+    left: 0; /* Show sidebar when active */
+  }
+
+  .main {
+    width: 100%;
+    padding: 20px;
+    margin-left: 0; /* Full width for main content on smaller screens */
+  }
+
+  /* Table adjustments for smaller screens */
+  .table-rekap {
+    padding: 15px;
+  }
+
+  .table thead th,
+  .table tbody td {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  button {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile .photo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .name h1 {
+    font-size: 16px;
+  }
+
+  .name h3 {
+    font-size: 12px;
+  }
+
+  .list {
+    padding: 15px 15px;
+    margin-left: 15px;
+    font-size: 12px;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .table thead th,
+  .table tbody td {
+    font-size: 12px;
+  }
+
+  .btn-edit,
+  .btn-detail {
+    width: 50px;
+    font-size: 11px;
+  }
 }
