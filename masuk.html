@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Master Barang</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"
+    />
+    <!-- DataTables Buttons CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"
+    />
+
+    <!-- Additional CSS -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="masuk.css" />
+
+    <style>
+      /* Style the DataTable */
+    
+      .dt-buttons {
+          margin-bottom: 10px;
+      }
+
+      .dt-button {
+          background-color: #4CAF50; /* Green background */
+          color: #4CAF50;;
+          border: none;
+          padding: 8px 12px;
+          font-size: 14px;
+          border-radius: 4px;
+          cursor: pointer;
+          margin-right: 5px;
+      }
+
+      .dt-button:hover {
+          background-color: #45a049; /* Darker green on hover */
+      }
+
+      .dt-button:active {
+          background-color: #3e8e41;
+          box-shadow: none;
+      }
+
+
+      .dataTables_filter input {
+          border: 1px solid #ddd;
+          padding: 5px;
+          border-radius: 4px;
+          margin-left: 5px;
+      }
+
+
+      .dataTables_paginate {
+          margin-top: 10px;
+      }
+
+ 
+
+     
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="profile">
+        <div class="photo"></div>
+        <div class="name">
+          <h1>Fachri Razali</h1>
+          <h3>Admin</h3>
+        </div>
+      </div>
+
+      <div class="list">
+        <img src="list.png" class="icon" />
+        <a href="karyawan.html"> Data karyawan</a>
+      </div>
+
+      <div class="list">
+        <img src="list.png" class="icon" />
+        <a href="masuk.html"> Data Barang</a>
+      </div>
+
+      <div class="list">
+        <img src="list.png" class="icon" />
+        <a href="peminjaman.html">Laporan Peminjaman Barang</a>
+      </div>
+
+      <div class="list">
+        <img src="list.png" class="icon" />
+        <a href="pengajuan2.html">Pengajuan Peminjaman Barang</a>
+      </div>
+    </div>
+
+    <div class="main">
+      <h1>Master Data Barang</h1>
+
+      <div class="table-rekap">
+        <table id="myTable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Barang</th>
+              <th>No Barang</th>
+              <th>Kode Barang</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Lemari</td>
+              <td>1</td>
+              <td>Dipinjam</td>
+              <td>BRG001</td>
+              <td>
+                <button class="btn-edit">Edit</button>
+                <button class="btn-detail">Detail</button>
+              </td>
+            </tr>
+            <!-- Add other data rows here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $("#myTable").DataTable({
+          dom: '<"top"Bf>rt<"bottom"ip>',
+          buttons: [
+            {
+              extend: "copy",
+              text: "Copy",
+            },
+            {
+              extend: "csv",
+              text: "Export CSV",
+            },
+            {
+              extend: "excel",
+              text: "Export Excel",
+            },
+            {
+              extend: "pdf",
+              text: "Save as PDF",
+            },
+            {
+              extend: "print",
+              text: "Print Table",
+            },
+          ],
+          responsive: true,
+        });
+      });
+    </script>
+
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+  </body>
+</html>
