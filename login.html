@@ -29,7 +29,7 @@
         </form>
       </div>
     </div>
-    
+
     <style>
       * {
         margin: 0;
@@ -122,13 +122,60 @@
       }
 
       form button a {
-        width: 100%;
         color: #fff;
         text-decoration: none;
       }
 
       form button:hover {
         background-color: #345776;
+      }
+
+   
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          height: auto;
+        }
+
+        .left-section,
+        .right-section {
+          width: 100%;
+          padding: 20px;
+        }
+
+        .right-section {
+          align-items: center;
+        }
+
+        .right-section h1 {
+          font-size: 28px;
+          text-align: center;
+        }
+
+        .right-section p {
+          font-size: 14px;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .left-section .logo h2 {
+          font-size: 20px;
+        }
+
+        .right-section h1 {
+          font-size: 24px;
+        }
+
+        .right-section p {
+          font-size: 13px;
+        }
+
+        form input,
+        form button {
+          font-size: 14px;
+          padding: 8px;
+        }
       }
     </style>
   </body>
