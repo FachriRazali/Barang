@@ -144,6 +144,10 @@ table#myTable td {
   margin-left: 20px;
   color: #335b7e;
 }
+.sub {
+  text-decoration: none;
+  color: #fff;
+}
 
 .form input[type="text"] {
   appearance: none;
@@ -282,5 +286,6 @@ button:hover {
 
   button {
     font-size: 0.9em;
+    text-decoration: none;
   }
 }

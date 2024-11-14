@@ -11,6 +11,11 @@ h1 {
   color: #3a577f;
 }
 
+.edit {
+  text-decoration: none;
+  color: #fff;
+}
+
 /* Sidebar Styling */
 .sidebar {
   background-color: #4a648d;
@@ -212,9 +217,14 @@ button {
     font-size: 12px;
   }
 
+  .btn-edit a {
+    text-decoration: none;
+  }
+
   .btn-edit,
   .btn-detail {
     width: 50px;
+    text-decoration: none;
     font-size: 11px;
   }
 }

@@ -234,6 +234,11 @@ button {
   margin-right: 5px;
 }
 
+.edit {
+  text-decoration: none;
+  color: #fff;
+}
+
 .dt-button:hover {
   background-color: #3a577f;
   transform: scale(1.05); /* Sedikit membesar saat dihover */

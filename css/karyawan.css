@@ -11,6 +11,11 @@ h1 {
   color: #3a577f;
 }
 
+.edit {
+  text-decoration: none;
+  color: #fff;
+}
+
 /* Sidebar Styling */
 .sidebar {
   background-color: #4a648d;
