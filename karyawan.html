@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Karyawan</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css"
-    />
-    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" />
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/karyawan.css" />
+
+    <style>
+      /* Hide the addForm initially */
+      #addForm {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <div class="sidebar">
@@ -28,12 +29,12 @@
 
       <div class="list">
         <img src="list.png" class="icon" />
-        <a href="karyawan.html"> Data karyawan</a>
+        <a href="karyawan.html">Data karyawan</a>
       </div>
 
       <div class="list">
         <img src="list.png" class="icon" />
-        <a href="masuk.html"> Data Barang</a>
+        <a href="masuk.html">Data Barang</a>
       </div>
 
       <div class="list">
@@ -49,6 +50,19 @@
 
     <div class="main">
       <h1>Master Data Karyawan</h1>
+      <button id="showFormButton" class="dt-button">Input Baru</button>
+
+      <!-- Form Tambah Data (hidden by default) -->
+      <div>
+        <form id="addForm">
+          <input type="text" id="namaKaryawan" placeholder="Nama Karyawan" required />
+          <input type="text" id="idKaryawan" placeholder="ID Karyawan" required />
+          <input type="text" id="alamat" placeholder="Alamat" required />
+          <input type="text" id="email" placeholder="Email" required />
+          <input type="text" id="divisi" placeholder="Divisi" required />
+          <button type="submit">Tambah Karyawan</button>
+        </form>
+      </div>
 
       <div class="table-rekap">
         <table id="myTable" class="table table-striped">
@@ -71,19 +85,59 @@
               <td>Pasar Kecapi</td>
               <td>Ai03@gmail.com</td>
               <td>Science</td>
-                 <td>
+              <td>
                 <button class="btn-edit">Edit</button>
                 <button class="btn-detail">Detail</button>
+                <button class="btn-delete">Hapus</button>
               </td>
             </tr>
-            <!-- Tambahkan data lainnya di sini -->
+            <!-- Add other data rows here -->
           </tbody>
         </table>
       </div>
     </div>
+
     <script>
       $(document).ready(function () {
-        $("#myTable").DataTable();
+        const table = $("#myTable").DataTable();
+
+        // Toggle form visibility
+        $("#showFormButton").on("click", function () {
+          $("#addForm").toggle();
+        });
+
+        // Add data function
+        $("#addForm").on("submit", function (e) {
+          e.preventDefault();
+          const namaKaryawan = $("#namaKaryawan").val();
+          const idKaryawan = $("#idKaryawan").val();
+          const alamat = $("#alamat").val();
+          const email = $("#email").val();
+          const divisi = $("#divisi").val();
+          const rowCount = table.rows().count() + 1;
+
+          // Add new row to table
+          table.row
+            .add([
+              rowCount,
+              namaKaryawan,
+              idKaryawan,
+              alamat,
+              email,
+              divisi,
+              '<button class="btn-edit">Edit</button> <button class="btn-detail">Detail</button> <button class="btn-delete">Hapus</button>'
+            ])
+            .draw();
+
+          // Reset and hide form after adding data
+          $("#addForm")[0].reset();
+          $("#addForm").hide();
+        });
+
+        // Delete row function
+        $("#myTable tbody").on("click", ".btn-delete", function () {
+          table.row($(this).parents("tr")).remove().draw();
+        });
       });
     </script>
   </body>

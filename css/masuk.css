@@ -39,7 +39,8 @@ h1 {
   margin-bottom: 10px;
 }
 
-.name h1, .name h3 {
+.name h1,
+.name h3 {
   margin: 0;
   color: #fff;
 }
@@ -216,4 +217,41 @@ button {
     width: 50px;
     font-size: 11px;
   }
+}
+
+.dt-buttons {
+  margin-bottom: 10px;
+}
+
+.dt-button {
+  background-color: #3a577f;
+  color: #3a577f;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 10px; /* Border bulat 10px */
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.dt-button:hover {
+  background-color: #3a577f;
+  transform: scale(1.05); /* Sedikit membesar saat dihover */
+}
+
+/* Style untuk button "Input Baru" secara spesifik */
+#showFormButton {
+  background-color: #3a577f;
+  border-radius: 10px;
+  color: 3a577f;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #3a577f; /* Border dengan warna sesuai */
+}
+
+#showFormButton:hover {
+  background-color: #3a577f;
+  border-color: #3a577f;
 }

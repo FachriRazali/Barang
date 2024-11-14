@@ -7,66 +7,57 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- DataTables CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" />
     <!-- DataTables Buttons CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" />
 
     <!-- Additional CSS -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/masuk.css" />
 
     <style>
       /* Style the DataTable */
-    
       .dt-buttons {
-          margin-bottom: 10px;
+        margin-bottom: 10px;
       }
 
       .dt-button {
-          background-color: #4CAF50; /* Green background */
-          color: #4CAF50;;
-          border: none;
-          padding: 8px 12px;
-          font-size: 14px;
-          border-radius: 4px;
-          cursor: pointer;
-          margin-right: 5px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        font-size: 14px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 5px;
       }
 
       .dt-button:hover {
-          background-color: #45a049; /* Darker green on hover */
+        background-color: #45a049;
       }
-
-      .dt-button:active {
-          background-color: #3e8e41;
-          box-shadow: none;
-      }
-
 
       .dataTables_filter input {
-          border: 1px solid #ddd;
-          padding: 5px;
-          border-radius: 4px;
-          margin-left: 5px;
+        border: 1px solid #ddd;
+        padding: 5px;
+        border-radius: 4px;
+        margin-left: 5px;
       }
-
 
       .dataTables_paginate {
-          margin-top: 10px;
+        margin-top: 10px;
       }
 
- 
+      /* Form input hidden by default */
+      #addForm {
+        display: none;
+        margin-top: 20px;
+      }
 
-     
+      #addForm input, #addForm button {
+        margin-top: 10px;
+        padding: 10px;
+        font-size: 14px;
+      }
     </style>
   </head>
   <body>
@@ -81,12 +72,12 @@
 
       <div class="list">
         <img src="list.png" class="icon" />
-        <a href="karyawan.html"> Data karyawan</a>
+        <a href="karyawan.html">Data karyawan</a>
       </div>
 
       <div class="list">
         <img src="list.png" class="icon" />
-        <a href="masuk.html"> Data Barang</a>
+        <a href="masuk.html">Data Barang</a>
       </div>
 
       <div class="list">
@@ -102,6 +93,20 @@
 
     <div class="main">
       <h1>Master Data Barang</h1>
+
+      <!-- Tombol Input Baru -->
+      <button id="showFormButton" class="dt-button">Input Baru</button>
+
+      <!-- Form Tambah Data (hidden by default) -->
+      <div>
+        <form id="addForm">
+          <input type="text" id="namaBarang" placeholder="Nama Barang" required />
+          <input type="text" id="noBarang" placeholder="No Barang" required />
+          <input type="text" id="kodeBarang" placeholder="Kode Barang" required />
+          <input type="text" id="status" placeholder="Status" required />
+          <button type="submit">Tambah Barang</button>
+        </form>
+      </div>
 
       <div class="table-rekap">
         <table id="myTable" class="table table-striped">
@@ -120,11 +125,12 @@
               <td>1</td>
               <td>Lemari</td>
               <td>1</td>
-              <td>Dipinjam</td>
               <td>BRG001</td>
+              <td>Dipinjam</td>
               <td>
                 <button class="btn-edit">Edit</button>
                 <button class="btn-detail">Detail</button>
+                <button class="btn-delete">Hapus</button>
               </td>
             </tr>
             <!-- Add other data rows here -->
@@ -135,31 +141,50 @@
 
     <script>
       $(document).ready(function () {
-        $("#myTable").DataTable({
+        const table = $("#myTable").DataTable({
           dom: '<"top"Bf>rt<"bottom"ip>',
           buttons: [
-            {
-              extend: "copy",
-              text: "Copy",
-            },
-            {
-              extend: "csv",
-              text: "Export CSV",
-            },
-            {
-              extend: "excel",
-              text: "Export Excel",
-            },
-            {
-              extend: "pdf",
-              text: "Save as PDF",
-            },
-            {
-              extend: "print",
-              text: "Print Table",
-            },
+            { extend: "copy", text: "Copy" },
+            { extend: "csv", text: "Export CSV" },
+            { extend: "excel", text: "Export Excel" },
+            { extend: "pdf", text: "Save as PDF" },
+            { extend: "print", text: "Print Table" }
           ],
           responsive: true,
+        });
+
+        // Tampilkan form input saat tombol "Input Baru" diklik
+        $("#showFormButton").on("click", function () {
+          $("#addForm").toggle(); // Toggle the form visibility
+        });
+
+        // Fungsi Tambah Data
+        $("#addForm").on("submit", function (e) {
+          e.preventDefault();
+          const namaBarang = $("#namaBarang").val();
+          const noBarang = $("#noBarang").val();
+          const kodeBarang = $("#kodeBarang").val();
+          const status = $("#status").val();
+          const rowCount = table.rows().count() + 1;
+
+          // Tambahkan baris baru ke tabel
+          table.row.add([
+            rowCount,
+            namaBarang,
+            noBarang,
+            kodeBarang,
+            status,
+            '<button class="btn-edit">Edit</button> <button class="btn-detail">Detail</button> <button class="btn-delete">Hapus</button>'
+          ]).draw();
+
+          // Bersihkan form setelah submit
+          $("#addForm")[0].reset();
+          $("#addForm").hide(); // Sembunyikan form setelah menambahkan data
+        });
+
+        // Fungsi Hapus Data
+        $('#myTable tbody').on('click', '.btn-delete', function () {
+          table.row($(this).parents('tr')).remove().draw();
         });
       });
     </script>
