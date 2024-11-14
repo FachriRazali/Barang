@@ -149,6 +149,10 @@ table#myTable td {
   color: #fff;
 }
 
+.detail {
+  margin-top: 35px;
+}
+
 .form input[type="text"] {
   appearance: none;
   border: none;

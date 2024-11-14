@@ -7,12 +7,21 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"
+    />
     <!-- DataTables Buttons CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"
+    />
 
     <!-- Additional CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/masuk.css" />
 
     <style>
@@ -22,7 +31,7 @@
       }
 
       .dt-button {
-        background-color: #4CAF50;
+        background-color: #4caf50;
         color: white;
         border: none;
         padding: 8px 12px;
@@ -53,7 +62,8 @@
         margin-top: 20px;
       }
 
-      #addForm input, #addForm button {
+      #addForm input,
+      #addForm button {
         margin-top: 10px;
         padding: 10px;
         font-size: 14px;
@@ -100,9 +110,19 @@
       <!-- Form Tambah Data (hidden by default) -->
       <div>
         <form id="addForm">
-          <input type="text" id="namaBarang" placeholder="Nama Barang" required />
+          <input
+            type="text"
+            id="namaBarang"
+            placeholder="Nama Barang"
+            required
+          />
           <input type="text" id="noBarang" placeholder="No Barang" required />
-          <input type="text" id="kodeBarang" placeholder="Kode Barang" required />
+          <input
+            type="text"
+            id="kodeBarang"
+            placeholder="Kode Barang"
+            required
+          />
           <input type="text" id="status" placeholder="Status" required />
           <button type="submit">Tambah Barang</button>
         </form>
@@ -128,8 +148,12 @@
               <td>BRG001</td>
               <td>Dipinjam</td>
               <td>
-                <button class="btn-edit"> <a class="edit" href="edit.html">Edit</a></button>
-                <button class="btn-detail">Detail</button>
+                <button class="btn-edit">
+                  <a class="edit" href="edit.html">Edit</a>
+                </button>
+                <button class="btn-detail">
+                  <a class="edit" href="detail-masuk.html">Detail</a>
+                </button>
                 <button class="btn-delete">Hapus</button>
               </td>
             </tr>
@@ -148,7 +172,7 @@
             { extend: "csv", text: "Export CSV" },
             { extend: "excel", text: "Export Excel" },
             { extend: "pdf", text: "Save as PDF" },
-            { extend: "print", text: "Print Table" }
+            { extend: "print", text: "Print Table" },
           ],
           responsive: true,
         });
@@ -168,14 +192,16 @@
           const rowCount = table.rows().count() + 1;
 
           // Tambahkan baris baru ke tabel
-          table.row.add([
-            rowCount,
-            namaBarang,
-            noBarang,
-            kodeBarang,
-            status,
-            '<button class="btn-edit">Edit</button> <button class="btn-detail">Detail</button> <button class="btn-delete">Hapus</button>'
-          ]).draw();
+          table.row
+            .add([
+              rowCount,
+              namaBarang,
+              noBarang,
+              kodeBarang,
+              status,
+              '<button class="btn-edit">Edit</button> <button class="btn-detail">Detail</button> <button class="btn-delete">Hapus</button>',
+            ])
+            .draw();
 
           // Bersihkan form setelah submit
           $("#addForm")[0].reset();
@@ -183,8 +209,8 @@
         });
 
         // Fungsi Hapus Data
-        $('#myTable tbody').on('click', '.btn-delete', function () {
-          table.row($(this).parents('tr')).remove().draw();
+        $("#myTable tbody").on("click", ".btn-delete", function () {
+          table.row($(this).parents("tr")).remove().draw();
         });
       });
     </script>
